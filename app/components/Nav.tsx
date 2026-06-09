@@ -94,8 +94,12 @@ export default function Nav() {
             <Link href="/contact">Contact</Link>
           </nav>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <Link href="/contact" className="btn btn-gold">Book a Strategy Call</Link>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+            <div className="nav-contact">
+              <span className="nc-label">Get in Touch</span>
+              <a href="mailto:info@wealthwithecom.com" className="nc-email">info@wealthwithecom.com</a>
+              <a href="tel:+10000000000" className="nc-phone">+1 (000) 000-0000</a>
+            </div>
             <button
               className="burger"
               aria-label="Toggle navigation"
