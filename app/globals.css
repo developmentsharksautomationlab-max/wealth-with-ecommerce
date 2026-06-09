@@ -1096,6 +1096,34 @@ footer {
   color: var(--gold);
   border-color: var(--gold);
 }
+.foot-ci {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+}
+.foot-ci .ic {
+  font-size: 16px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.foot-ci .l {
+  display: block;
+  font-size: 11px;
+  color: var(--muted-2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.foot-ci .v {
+  display: block;
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 2px;
+  transition: 0.2s;
+}
+.foot-ci:hover .v {
+  color: var(--gold);
+}
 
 /* ===== SUCCESS STORIES ===== */
 .reviews {

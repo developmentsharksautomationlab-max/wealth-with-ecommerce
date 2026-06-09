@@ -29,7 +29,7 @@ export default function ContactPage() {
                 <span className="ic">✉️</span>
                 <div>
                   <div className="l">Email</div>
-                  <div className="v">invest@wealthwithecom.com</div>
+                  <div className="v">info@wealthwithecom.com</div>
                 </div>
               </div>
               <div className="ci">
