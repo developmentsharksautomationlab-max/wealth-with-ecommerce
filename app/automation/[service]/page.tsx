@@ -148,7 +148,7 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
           style={{
             position: 'absolute',
             right: '18%',
-            top: '18%',
+            top: '50%',
             width: 220,
             height: 220,
             objectFit: 'contain',
