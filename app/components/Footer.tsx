@@ -89,17 +89,15 @@ export default function Footer() {
           <div className="foot-col">
             <h5>Get in Touch</h5>
             <a className="foot-ci" href="mailto:info@wealthwithecom.com">
-              <span className="ic">✉️</span>
               <span>
                 <span className="l">Email</span>
                 <span className="v">info@wealthwithecom.com</span>
               </span>
             </a>
-            <a className="foot-ci" href="tel:+10000000000">
-              <span className="ic">📞</span>
+            <a className="foot-ci" href="tel:+17133377701">
               <span>
                 <span className="l">Phone</span>
-                <span className="v">+1 (000) 000-0000</span>
+                <span className="v">+1 (713) 337-7701</span>
               </span>
             </a>
           </div>

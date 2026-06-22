@@ -36,7 +36,7 @@ export default function ContactPage() {
                 <span className="ic">📞</span>
                 <div>
                   <div className="l">Strategy Desk</div>
-                  <div className="v">+1 (000) 000-0000</div>
+                  <div className="v">+1 (713) 337-7701</div>
                 </div>
               </div>
               <div className="ci">

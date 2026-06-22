@@ -98,7 +98,7 @@ export default function Nav() {
             <div className="nav-contact">
               <span className="nc-label">Get in Touch</span>
               <a href="mailto:info@wealthwithecom.com" className="nc-email">info@wealthwithecom.com</a>
-              <a href="tel:+10000000000" className="nc-phone">+1 (000) 000-0000</a>
+              <a href="tel:+17133377701" className="nc-phone">+1 (713) 337-7701</a>
             </div>
             <button
               className="burger"

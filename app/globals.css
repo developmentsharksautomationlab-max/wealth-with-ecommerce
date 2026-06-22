@@ -1143,11 +1143,6 @@ footer {
   gap: 12px;
   padding: 9px 0;
 }
-.foot-ci .ic {
-  font-size: 16px;
-  color: var(--gold);
-  flex-shrink: 0;
-}
 .foot-ci .l {
   display: block;
   font-size: 11px;
