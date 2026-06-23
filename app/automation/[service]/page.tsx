@@ -82,30 +82,6 @@ const SVC_DATA: Record<string, {
   },
 }
 
-const TIERS = [
-  {
-    n: 'Starter',
-    pr: '$5K',
-    sub: 'entry capital',
-    featured: false,
-    li: ['1 automated store', 'Dedicated consultant', 'Monthly payout report', 'Dashboard access'],
-  },
-  {
-    n: 'Growth',
-    pr: '$15K',
-    sub: 'recommended',
-    featured: true,
-    li: ['1–2 optimized stores', 'Priority specialist pod', 'Bi-weekly reporting', 'PPC + content included', 'Faster scaling timeline'],
-  },
-  {
-    n: 'Portfolio',
-    pr: '$30K+',
-    sub: 'diversified',
-    featured: false,
-    li: ['Multi-platform stores', 'Family & friends accounts', 'Senior account lead', 'Weekly strategy calls', 'Full diversification'],
-  },
-]
-
 export function generateStaticParams() {
   return Object.keys(SVC_DATA).map((service) => ({ service }))
 }
@@ -171,31 +147,6 @@ export default async function ServicePage({ params }: { params: Promise<{ servic
                   <h4>{h}</h4>
                   <p>{p}</p>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="sec" style={{ paddingTop: 0 }}>
-        <div className="wrap">
-          <div className="sec-label">// Investment tiers</div>
-          <h2 className="sec-h">Choose your portfolio level.</h2>
-          <p className="sec-intro">Premium done-for-you packages. Final pricing is confirmed on your strategy call based on capital and platform.</p>
-          <div className="tiers">
-            {TIERS.map((t) => (
-              <div className={`tier${t.featured ? ' feat' : ''}`} key={t.n}>
-                {t.featured && <div className="ribbon">MOST POPULAR</div>}
-                <div className="pn">{t.n}</div>
-                <div className="pr">{t.pr} <small>/ {t.sub}</small></div>
-                <ul>
-                  {t.li.map((item) => (
-                    <li key={item}><span className="tk">✓</span> {item}</li>
-                  ))}
-                </ul>
-                <Link href="/contact" className={`btn ${t.featured ? 'btn-gold' : 'btn-ghost'}`}>
-                  Book a Call
-                </Link>
               </div>
             ))}
           </div>
