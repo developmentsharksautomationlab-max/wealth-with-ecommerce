@@ -422,6 +422,28 @@ h1.hero-h .g {
   font-weight: 500;
   text-shadow: 0 1px 20px rgba(0, 0, 0, 0.6);
 }
+.hero-guarantee {
+  color: #00ffd1;
+  font-weight: 700;
+}
+
+/* ===== HERO GUARANTEE BADGE ===== */
+.guarantee-badge {
+  display: inline-block;
+  max-width: 100%;
+  margin: 4px 0 18px;
+  padding: 12px 18px;
+  border: 1px solid rgba(0, 255, 209, 0.45);
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(0, 255, 209, 0.14), rgba(0, 255, 209, 0.04));
+  box-shadow: 0 0 28px rgba(0, 255, 209, 0.16);
+  color: #00ffd1;
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 800;
+  font-size: clamp(15px, 1.7vw, 19px);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
 .hero-cta {
   display: flex;
   gap: 14px;

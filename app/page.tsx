@@ -186,10 +186,14 @@ export default function Home() {
                 Stop trading time for money.{' '}
                 <span className="g">Own your freedom.</span>
               </h1>
+              <div className="guarantee-badge reveal">
+                Earn $6,000 in 30 days — or we work for free.
+              </div>
               <p className="hero-sub reveal">
-                Imagine waking up to income you didn't have to clock in for. WealthWithEcom builds and runs
-                automated stores across Amazon, Shopify, Walmart, Etsy and TikTok — a real business that pays
-                you while you live your life. You invest. We operate. You collect.
+                We build and manage fully automated eCommerce stores on Amazon, Shopify, Walmart, Etsy, and
+                TikTok — so you earn passive income without lifting a finger. You invest once. We handle
+                everything. You collect monthly.{' '}
+                <strong className="hero-guarantee">Guaranteed: $6,000 in your first 30 days, or we keep working until you do.</strong>
               </p>
               <div className="hero-cta reveal">
                 <Link href="/contact" className="btn btn-gold">Start Investing →</Link>
@@ -501,9 +505,10 @@ export default function Home() {
               AI solutions for <span className="b">business owners</span> &amp; <span className="b">startups</span>.
             </h2>
             <p style={{ color: 'var(--muted)', fontSize: 16.5, maxWidth: '60ch', margin: '18px 0 28px', lineHeight: 1.65, position: 'relative' }}>
-              Our sister brand <strong style={{ color: 'var(--gold-2)' }}>AI Sharks</strong> brings the same
-              systematic discipline to artificial intelligence — building custom AI agents, automation
-              pipelines and intelligent tools that cut costs and scale operations for founders.
+              Meet our AI model — built to replace repetitive, manual work with machine-level efficiency.{' '}
+              <strong style={{ color: 'var(--gold-2)' }}>AI Sharks</strong> deploys custom AI agents, automated
+              workflows, and intelligent tools that operate 24/7 so your team doesn't have to. Stop doing it
+              manually. Start doing it at scale.
             </p>
             <div className="ai-feats">
               {AI_FEATS_HOME.map((f) => (
