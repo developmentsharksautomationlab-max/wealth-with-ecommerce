@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Exo_2, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Nav from "./components/Nav";
-import Footer from "./components/Footer";
+import SiteChrome from "./components/SiteChrome";
 import RevealObserver from "./components/RevealObserver";
 import CursorGlow from "./components/CursorGlow";
 import PositionAwareButtons from "./components/PositionAwareButtons";
@@ -53,9 +52,7 @@ export default function RootLayout({
         <Tilt3D />
         <Scroll3D />
         <RevealObserver />
-        <Nav />
-        <main>{children}</main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );
