@@ -3786,3 +3786,78 @@ summary.ad-q-q::marker {
     grid-template-columns: 1fr;
   }
 }
+
+/* =====================================================================
+   MOBILE TUNING — /ecommerce-automation + /thank-you
+   (grids already collapse above; this tightens spacing + fits the header)
+   ===================================================================== */
+@media (max-width: 640px) {
+  .ad-wrap {
+    padding: 0 18px;
+  }
+  .ad-sec {
+    padding: 60px 0;
+  }
+  .ad-hero {
+    padding: 36px 0 52px;
+  }
+  .ty-hero {
+    padding: 60px 0 36px;
+  }
+
+  .ad-liveon {
+    gap: 14px;
+    margin-top: 40px;
+  }
+  .ad-liveon-logos {
+    gap: 22px;
+  }
+
+  .ad-video-block {
+    margin-top: 48px;
+  }
+  .ad-video {
+    height: 140px;
+  }
+
+  .ad-pillar {
+    padding: 30px 24px;
+  }
+  .ad-case {
+    padding: 26px 22px;
+  }
+  .ad-invest {
+    padding: 28px 22px;
+  }
+
+  summary.ad-q-q {
+    padding: 18px 18px;
+    gap: 12px;
+  }
+  .ad-q-a {
+    padding: 0 18px 20px;
+  }
+
+  .ty-step {
+    padding: 28px 22px;
+  }
+  .ty-rev {
+    padding: 26px 22px;
+  }
+
+  .ad-foot {
+    padding: 44px 0 32px;
+  }
+}
+
+/* Keep the sticky header (logo + CTA) from overflowing very small phones */
+@media (max-width: 380px) {
+  .ad-nav-inner {
+    gap: 10px;
+  }
+  .ad-nav-cta {
+    font-size: 9px;
+    padding: 7px 11px;
+    letter-spacing: 0.08em;
+  }
+}
