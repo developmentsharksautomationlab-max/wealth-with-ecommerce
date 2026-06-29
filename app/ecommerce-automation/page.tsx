@@ -498,7 +498,7 @@ export default function EcommerceAutomationPage() {
           </div>
 
           <div className="ad-foot-bottom">
-            <span>© 2025 Wealth with Ecom™ · All rights reserved</span>
+            <span>© 2026 Wealth with Ecom™ · All rights reserved</span>
             <span className="ad-foot-disc">
               Results shown are not typical or guaranteed. Individual results vary.
             </span>

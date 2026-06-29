@@ -3,8 +3,10 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? ''
-const LEAD_EMAIL = 'info@wealthwithecom.com'
+// Formspree form ID (just the part after /f/). Set NEXT_PUBLIC_FORMSPREE_ID
+// in .env.local. Leads are delivered to the inbox tied to this form in the
+// Formspree dashboard (info@wealthwithecom.com).
+const FORMSPREE_ENDPOINT = `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID ?? ''}`
 
 const INVESTMENT_LEVELS = [
   'Under $10,000',
@@ -38,18 +40,18 @@ export default function AdApplicationForm() {
     const data = new FormData(form)
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: data,
       })
-      const json = await res.json()
-      if (res.ok && json.success) {
+      if (res.ok) {
         // Keep the button in its "Submitting…" state while we navigate away.
         router.push('/thank-you')
       } else {
+        const json = await res.json().catch(() => null)
         setStatus('error')
-        setError(json.message || 'Something went wrong. Please try again.')
+        setError(json?.errors?.[0]?.message || 'Something went wrong. Please try again.')
       }
     } catch {
       setStatus('error')
@@ -59,19 +61,16 @@ export default function AdApplicationForm() {
 
   return (
     <form className="ad-form form-box" onSubmit={handleSubmit}>
-      {/* Web3Forms config — leads are delivered to the inbox tied to the key */}
-      <input type="hidden" name="access_key" value={ACCESS_KEY} />
+      {/* Formspree config — leads are delivered to the inbox tied to this form */}
       <input
         type="hidden"
-        name="subject"
+        name="_subject"
         value="New Brand Partnership Application — Wealth With Ecom™"
       />
-      <input type="hidden" name="from_name" value="Wealth With Ecom — Landing Page" />
-      <input type="hidden" name="Lead Destination" value={LEAD_EMAIL} />
-      {/* Honeypot */}
+      {/* Honeypot (Formspree ignores submissions where _gotcha is filled) */}
       <input
-        type="checkbox"
-        name="botcheck"
+        type="text"
+        name="_gotcha"
         tabIndex={-1}
         autoComplete="off"
         style={{ display: 'none' }}

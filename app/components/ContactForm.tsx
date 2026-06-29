@@ -2,15 +2,44 @@
 
 import { useState } from 'react'
 
-export default function ContactForm() {
-  const [sent, setSent] = useState(false)
+// Same Formspree form as the ad landing page — leads land in
+// info@wealthwithecom.com. Set NEXT_PUBLIC_FORMSPREE_ID in .env.local.
+const FORMSPREE_ENDPOINT = `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID ?? ''}`
 
-  function handleSubmit(e: React.FormEvent) {
+type Status = 'idle' | 'sending' | 'success' | 'error'
+
+export default function ContactForm() {
+  const [status, setStatus] = useState<Status>('idle')
+  const [error, setError] = useState('')
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setSent(true)
+    const form = e.currentTarget
+    setStatus('sending')
+    setError('')
+
+    const data = new FormData(form)
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: data,
+      })
+      if (res.ok) {
+        setStatus('success')
+      } else {
+        const json = await res.json().catch(() => null)
+        setStatus('error')
+        setError(json?.errors?.[0]?.message || 'Something went wrong. Please try again.')
+      }
+    } catch {
+      setStatus('error')
+      setError('Network error — please check your connection and try again.')
+    }
   }
 
-  if (sent) {
+  if (status === 'success') {
     return (
       <div className="form-box" style={{ textAlign: 'center', padding: '60px 36px' }}>
         <div style={{ fontSize: 52, marginBottom: 16 }}>✅</div>
@@ -25,30 +54,44 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="form-box" onSubmit={handleSubmit} noValidate>
+    <form className="form-box" onSubmit={handleSubmit}>
+      <input
+        type="hidden"
+        name="_subject"
+        value="New Free Consultation Request — Wealth With Ecom™"
+      />
+      {/* Honeypot (Formspree ignores submissions where _gotcha is filled) */}
+      <input
+        type="text"
+        name="_gotcha"
+        tabIndex={-1}
+        autoComplete="off"
+        style={{ display: 'none' }}
+        aria-hidden="true"
+      />
       <div className="row2">
         <div className="field">
           <label htmlFor="fname">First Name *</label>
-          <input id="fname" type="text" placeholder="Jane" required />
+          <input id="fname" name="first_name" type="text" placeholder="Jane" required />
         </div>
         <div className="field">
           <label htmlFor="lname">Last Name *</label>
-          <input id="lname" type="text" placeholder="Doe" required />
+          <input id="lname" name="last_name" type="text" placeholder="Doe" required />
         </div>
       </div>
       <div className="row2">
         <div className="field">
           <label htmlFor="email">Email *</label>
-          <input id="email" type="email" placeholder="jane@email.com" required />
+          <input id="email" name="email" type="email" placeholder="jane@email.com" required />
         </div>
         <div className="field">
           <label htmlFor="phone">Phone *</label>
-          <input id="phone" type="tel" placeholder="+1 ..." required />
+          <input id="phone" name="phone" type="tel" placeholder="+1 ..." required />
         </div>
       </div>
       <div className="field">
         <label htmlFor="budget">Capital Budget *</label>
-        <select id="budget" required defaultValue="">
+        <select id="budget" name="budget" required defaultValue="">
           <option value="" disabled>Select your budget range…</option>
           <option>$5,000 – $15,000</option>
           <option>$15,000 – $30,000</option>
@@ -58,7 +101,7 @@ export default function ContactForm() {
       </div>
       <div className="field">
         <label htmlFor="store">Which store(s) are you interested in? *</label>
-        <select id="store" required defaultValue="">
+        <select id="store" name="store_interest" required defaultValue="">
           <option value="" disabled>Select a platform…</option>
           <option>Amazon Automated Store</option>
           <option>Shopify Automated Store</option>
@@ -74,6 +117,7 @@ export default function ContactForm() {
         <label htmlFor="notes">Anything we should know?</label>
         <textarea
           id="notes"
+          name="message"
           rows={3}
           placeholder="Goals, timeline, family/friends accounts…"
           style={{ resize: 'none' }}
@@ -83,9 +127,13 @@ export default function ContactForm() {
         type="submit"
         className="btn btn-gold"
         style={{ width: '100%', justifyContent: 'center' }}
+        disabled={status === 'sending'}
       >
-        Request My Free Consultation →
+        {status === 'sending' ? 'Submitting…' : 'Request My Free Consultation →'}
       </button>
+      {status === 'error' && (
+        <p style={{ textAlign: 'center', color: '#ff6b6b', fontSize: 13, marginTop: 12 }}>{error}</p>
+      )}
       <p style={{ textAlign: 'center', color: 'var(--muted-2)', fontSize: 12, marginTop: 14 }}>
         🔒 End-to-end encryption active.
       </p>
