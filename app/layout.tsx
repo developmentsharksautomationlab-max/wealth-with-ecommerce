@@ -46,7 +46,6 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <LoadingScreen />
         <div className="grain" />
-        <div className="scroll-progress" aria-hidden="true" />
         <CursorGlow />
         <PositionAwareButtons />
         <Tilt3D />

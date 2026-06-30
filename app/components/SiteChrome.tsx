@@ -18,6 +18,12 @@ export default function SiteChrome({ children }: { children: ReactNode }) {
 
   return (
     <>
+      {/* Scroll-progress bar: gold on the ad/thank-you funnel, teal elsewhere.
+          Lives here (not layout.tsx) so it can be route-aware. */}
+      <div
+        className={bare ? 'scroll-progress scroll-progress--gold' : 'scroll-progress'}
+        aria-hidden="true"
+      />
       {!bare && <Nav />}
       <main>{children}</main>
       {!bare && <Footer />}

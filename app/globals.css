@@ -2198,6 +2198,11 @@ h1.hero-h .g,
   pointer-events: none;
   transition: width 0.06s linear;
 }
+/* Gold variant for the ad/thank-you funnel (this bar is outside .ad scope,
+   so it uses literal champagne-gold instead of the teal tokens) */
+.scroll-progress--gold {
+  background: linear-gradient(90deg, #d4af37, #f0d985);
+}
 
 .hero .wrap {
   will-change: transform, opacity;
@@ -2242,6 +2247,30 @@ h2.sec-h {
 .ad {
   position: relative;
   z-index: 2;
+
+  /* ---- PDF "Premium Brand Partnership" gold theme ----
+     Scoped token override: flips this page (and the /thank-you page, which
+     also uses .ad) from the site's teal system to champagne gold WITHOUT
+     touching the teal homepage. Hardcoded teal rgba()/hex literals further
+     down in the ad and thank-you rules are driven off --gold-rgb. */
+  --gold: #d4af37;
+  --gold-2: #f0d985;
+  --gold-rgb: 212, 175, 55;
+  --gold2-rgb: 240, 217, 133;
+  --accent: #d4af37;
+  --txt: #efe7d2;
+  --bg: #0e0d0a;
+  --bg-2: #14110b;
+  --panel: #1a1610;
+  --panel-2: #221d14;
+  --line: rgba(212, 175, 55, 0.14);
+  --line-2: rgba(212, 175, 55, 0.05);
+  --muted: #a89c80;
+  --muted-2: #786c50;
+
+  /* Opaque warm backdrop so the global teal body glow doesn't bleed through */
+  background: var(--bg);
+  min-height: 100vh;
 }
 .ad .g {
   background: linear-gradient(135deg, var(--gold-2), var(--gold));
@@ -2267,7 +2296,7 @@ h2.sec-h {
   top: 0;
   z-index: 30;
   padding: 15px 0;
-  background: rgba(8, 15, 16, 0.72);
+  background: rgba(14, 13, 10, 0.78);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
@@ -2321,8 +2350,8 @@ h2.sec-h {
 }
 .ad-pill-gold {
   background: linear-gradient(135deg, var(--gold), var(--gold-2));
-  color: #06110f;
-  box-shadow: 0 14px 30px rgba(0, 201, 174, 0.18);
+  color: #241803;
+  box-shadow: 0 14px 30px rgba(var(--gold-rgb), 0.18);
 }
 .ad-pill-ghost {
   border-color: var(--line);
@@ -2347,15 +2376,15 @@ h2.sec-h {
   position: absolute;
   inset: -30%;
   background:
-    radial-gradient(ellipse 46% 60% at 22% 28%, rgba(0, 201, 174, 0.22) 0%, transparent 55%),
-    radial-gradient(ellipse 34% 48% at 70% 16%, rgba(64, 223, 208, 0.12) 0%, transparent 52%);
+    radial-gradient(ellipse 46% 60% at 22% 28%, rgba(var(--gold-rgb), 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 34% 48% at 70% 16%, rgba(var(--gold2-rgb), 0.12) 0%, transparent 52%);
   animation: glow-slide 9s ease-in-out infinite alternate;
 }
 .ad-hero-bg::after {
   content: '';
   position: absolute;
   inset: -30%;
-  background: radial-gradient(ellipse 30% 44% at 80% 42%, rgba(64, 223, 208, 0.14) 0%, transparent 50%);
+  background: radial-gradient(ellipse 30% 44% at 80% 42%, rgba(var(--gold2-rgb), 0.14) 0%, transparent 50%);
   animation: glow-slide-2 12s ease-in-out infinite alternate;
   animation-delay: -4s;
 }
@@ -2390,7 +2419,7 @@ h2.sec-h {
   text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
 }
 .ad-hero-sub {
-  color: #c5d2df;
+  color: #d8cebb;
   font-size: clamp(16px, 2vw, 20px);
   max-width: 52ch;
   margin: 30px 0 18px;
@@ -2430,7 +2459,7 @@ h2.sec-h {
 }
 .ad-liveon-logos img {
   opacity: 0.7;
-  filter: sepia(1) hue-rotate(137deg) saturate(330%) brightness(0.95);
+  filter: sepia(1) saturate(170%) brightness(0.92);
 }
 
 /* ---- The Problem ---- */
@@ -2494,7 +2523,7 @@ h2.sec-h {
   display: grid;
   place-items: center;
   color: var(--gold);
-  box-shadow: 0 0 32px rgba(0, 201, 174, 0.22);
+  box-shadow: 0 0 32px rgba(var(--gold-rgb), 0.22);
 }
 .ad-video-cap {
   color: var(--muted-2);
@@ -2894,12 +2923,12 @@ h2.sec-h {
 }
 .ad-case:hover {
   transform: translateY(-5px);
-  border-color: rgba(0, 201, 174, 0.4);
-  box-shadow: 0 0 0 1px rgba(0, 201, 174, 0.35), 0 24px 60px rgba(0, 201, 174, 0.12);
+  border-color: rgba(var(--gold-rgb), 0.4);
+  box-shadow: 0 0 0 1px rgba(var(--gold-rgb), 0.35), 0 24px 60px rgba(var(--gold-rgb), 0.12);
 }
 .ad-pillar:hover {
   background: var(--panel-2);
-  box-shadow: inset 0 0 0 1px rgba(0, 201, 174, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(var(--gold-rgb), 0.22);
 }
 
 /* CTA pills — hover lift + shimmer sweep (decorative; still non-interactive) */
@@ -2911,7 +2940,7 @@ h2.sec-h {
 }
 .ad-pill-gold:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 36px rgba(0, 201, 174, 0.28);
+  box-shadow: 0 18px 36px rgba(var(--gold-rgb), 0.28);
 }
 .ad-pill-ghost:hover {
   transform: translateY(-2px);
@@ -2949,7 +2978,7 @@ h2.sec-h {
   transition: box-shadow 0.3s ease;
 }
 .ad-video:hover .ad-video-play {
-  box-shadow: 0 0 46px rgba(0, 201, 174, 0.42);
+  box-shadow: 0 0 46px rgba(var(--gold-rgb), 0.42);
 }
 
 /* Status dot pulse */
@@ -2962,7 +2991,7 @@ h2.sec-h {
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 .ad-step:hover .ad-step-num {
-  box-shadow: 0 0 24px rgba(0, 201, 174, 0.4);
+  box-shadow: 0 0 24px rgba(var(--gold-rgb), 0.4);
   transform: scale(1.05);
 }
 
@@ -2972,8 +3001,8 @@ h2.sec-h {
 }
 .ad-liveon-logos img:hover {
   opacity: 1;
-  filter: sepia(1) hue-rotate(137deg) saturate(420%) brightness(1.15)
-    drop-shadow(0 0 10px rgba(0, 201, 174, 0.55));
+  filter: sepia(1) saturate(240%) brightness(1.1)
+    drop-shadow(0 0 10px rgba(var(--gold-rgb), 0.55));
 }
 
 /* Staggered reveal — hero */
@@ -3037,7 +3066,7 @@ h2.sec-h {
 .ad-foot-logo:hover {
   opacity: 0.9;
   transform: translateY(-1px);
-  filter: drop-shadow(0 0 14px rgba(0, 201, 174, 0.35));
+  filter: drop-shadow(0 0 14px rgba(var(--gold-rgb), 0.35));
 }
 
 /* ---- Center every content section ---- */
@@ -3228,7 +3257,7 @@ h2.sec-h {
   border-radius: 10px;
 }
 .ad-prob:hover {
-  background: rgba(0, 201, 174, 0.04);
+  background: rgba(var(--gold-rgb), 0.04);
 }
 .ad-prob:hover p {
   color: var(--txt);
@@ -3246,7 +3275,7 @@ h2.sec-h {
   border-radius: 12px;
 }
 .ad-q:hover {
-  background: rgba(0, 201, 174, 0.04);
+  background: rgba(var(--gold-rgb), 0.04);
 }
 .ad-q-q {
   transition: color 0.25s ease;
@@ -3266,14 +3295,14 @@ h2.sec-h {
   transition: text-shadow 0.25s ease;
 }
 .ad-invest-row:hover .ad-invest-amt {
-  text-shadow: 0 0 16px rgba(0, 201, 174, 0.5);
+  text-shadow: 0 0 16px rgba(var(--gold-rgb), 0.5);
 }
 
 .ad-case-row {
   transition: border-color 0.25s ease;
 }
 .ad-case-row:hover {
-  border-color: rgba(0, 201, 174, 0.3);
+  border-color: rgba(var(--gold-rgb), 0.3);
 }
 .ad-case-row:hover .ad-case-v {
   color: var(--gold-2);
@@ -3285,11 +3314,11 @@ h2.sec-h {
 }
 .ad-foot-plats span:hover {
   opacity: 1;
-  text-shadow: 0 0 12px rgba(0, 201, 174, 0.5);
+  text-shadow: 0 0 12px rgba(var(--gold-rgb), 0.5);
 }
 
 .ad-select:hover {
-  border-color: rgba(0, 201, 174, 0.4);
+  border-color: rgba(var(--gold-rgb), 0.4);
   color: var(--txt);
 }
 
@@ -3319,9 +3348,9 @@ h2.sec-h {
   place-items: center;
   font-size: 30px;
   font-weight: 700;
-  color: #06110f;
+  color: #241803;
   background: linear-gradient(135deg, var(--gold), var(--gold-2));
-  box-shadow: 0 0 34px rgba(0, 201, 174, 0.35);
+  box-shadow: 0 0 34px rgba(var(--gold-rgb), 0.35);
 }
 .ad-form-success h3 {
   font-size: 26px;
@@ -3396,10 +3425,10 @@ h2.sec-h {
     box-shadow 0.2s ease, transform 0.2s ease;
 }
 .ad-nav-cta:hover {
-  color: #06110f;
+  color: #241803;
   background: linear-gradient(135deg, var(--gold), var(--gold-2));
   border-color: transparent;
-  box-shadow: 0 8px 22px rgba(0, 201, 174, 0.28);
+  box-shadow: 0 8px 22px rgba(var(--gold-rgb), 0.28);
   transform: translateY(-1px);
 }
 
@@ -3431,12 +3460,12 @@ h2.sec-h {
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 .ad-q:hover {
-  border-color: rgba(0, 201, 174, 0.35);
+  border-color: rgba(var(--gold-rgb), 0.35);
   background: var(--panel);
 }
 .ad-q[open] {
-  border-color: rgba(0, 201, 174, 0.4);
-  box-shadow: 0 0 0 1px rgba(0, 201, 174, 0.22), 0 18px 44px rgba(0, 0, 0, 0.3);
+  border-color: rgba(var(--gold-rgb), 0.4);
+  box-shadow: 0 0 0 1px rgba(var(--gold-rgb), 0.22), 0 18px 44px rgba(0, 0, 0, 0.3);
 }
 summary.ad-q-q {
   list-style: none;
@@ -3554,7 +3583,7 @@ summary.ad-q-q::marker {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: radial-gradient(720px 440px at 50% -12%, rgba(0, 201, 174, 0.18), transparent 62%);
+  background: radial-gradient(720px 440px at 50% -12%, rgba(var(--gold-rgb), 0.18), transparent 62%);
 }
 .ty-check {
   width: 88px;
@@ -3565,9 +3594,9 @@ summary.ad-q-q::marker {
   place-items: center;
   font-size: 44px;
   font-weight: 700;
-  color: #06110f;
+  color: #241803;
   background: linear-gradient(135deg, var(--gold), var(--gold-2));
-  box-shadow: 0 0 50px rgba(0, 201, 174, 0.4);
+  box-shadow: 0 0 50px rgba(var(--gold-rgb), 0.4);
   animation: ty-pop 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 @keyframes ty-pop {
@@ -3592,7 +3621,7 @@ summary.ad-q-q::marker {
   margin: 0 auto;
 }
 .ty-sub {
-  color: #c5d2df;
+  color: #d8cebb;
   font-size: clamp(16px, 2vw, 19px);
   max-width: 60ch;
   margin: 22px auto 0;
@@ -3617,8 +3646,8 @@ summary.ad-q-q::marker {
 }
 .ty-step:hover {
   transform: translateY(-5px);
-  border-color: rgba(0, 201, 174, 0.4);
-  box-shadow: 0 0 0 1px rgba(0, 201, 174, 0.35), 0 24px 60px rgba(0, 201, 174, 0.12);
+  border-color: rgba(var(--gold-rgb), 0.4);
+  box-shadow: 0 0 0 1px rgba(var(--gold-rgb), 0.35), 0 24px 60px rgba(var(--gold-rgb), 0.12);
 }
 .ty-step-n {
   display: block;
@@ -3660,8 +3689,8 @@ summary.ad-q-q::marker {
 }
 .ty-rev:hover {
   transform: translateY(-5px);
-  border-color: rgba(0, 201, 174, 0.4);
-  box-shadow: 0 0 0 1px rgba(0, 201, 174, 0.35), 0 24px 60px rgba(0, 201, 174, 0.12);
+  border-color: rgba(var(--gold-rgb), 0.4);
+  box-shadow: 0 0 0 1px rgba(var(--gold-rgb), 0.35), 0 24px 60px rgba(var(--gold-rgb), 0.12);
 }
 .ty-rev-stars {
   color: #ffc24b;
@@ -3674,7 +3703,7 @@ summary.ad-q-q::marker {
   font-size: 15px;
   line-height: 1.65;
   font-style: italic;
-  color: #c5d2df;
+  color: #d8cebb;
   margin-bottom: 22px;
 }
 .ty-rev-by {
@@ -3691,7 +3720,7 @@ summary.ad-q-q::marker {
   place-items: center;
   font-weight: 700;
   font-size: 14px;
-  color: #06110f;
+  color: #241803;
   background: linear-gradient(135deg, var(--gold), var(--gold-2));
 }
 .ty-rev-name {
@@ -3724,7 +3753,7 @@ summary.ad-q-q::marker {
   transition: background 0.25s ease;
 }
 .ty-prep-item:hover {
-  background: rgba(0, 201, 174, 0.04);
+  background: rgba(var(--gold-rgb), 0.04);
 }
 .ty-prep-tick {
   width: 26px;
@@ -3735,7 +3764,7 @@ summary.ad-q-q::marker {
   place-items: center;
   font-size: 13px;
   font-weight: 700;
-  color: #06110f;
+  color: #241803;
   background: linear-gradient(135deg, var(--green), #34d399);
 }
 .ty-prep-item p {
@@ -3763,7 +3792,7 @@ summary.ad-q-q::marker {
 }
 .ty-contact-mail:hover {
   color: var(--gold);
-  text-shadow: 0 0 12px rgba(0, 201, 174, 0.4);
+  text-shadow: 0 0 12px rgba(var(--gold-rgb), 0.4);
 }
 
 /* Stagger */

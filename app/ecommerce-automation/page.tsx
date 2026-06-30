@@ -170,7 +170,7 @@ const FAQ = [
 
 const Logo = ({ w, h, priority = false }: { w: number; h: number; priority?: boolean }) => (
   <Image
-    src="/logo/logo4.png"
+    src="/logo/logo-gold.png"
     alt="Wealth With Ecom"
     width={w}
     height={h}
