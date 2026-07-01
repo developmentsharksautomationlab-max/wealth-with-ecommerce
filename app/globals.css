@@ -2268,6 +2268,16 @@ h2.sec-h {
   --muted: #a89c80;
   --muted-2: #786c50;
 
+  /* ---- Reference-PDF fonts (DejaVu) ----
+     The client's reference PDF is set in DejaVu Serif (headings) + DejaVu Sans
+     (body/labels). Re-pointing the three font vars here (scoped to .ad only)
+     swaps this funnel to those exact fonts WITHOUT touching the teal homepage,
+     which keeps Exo 2 / Inter / JetBrains Mono. Gold accents (.ad .g) inherit
+     the DejaVu Serif italic. Fonts self-hosted in app/fonts/ via next/font/local. */
+  --font-fraunces: var(--font-dejavu-serif);
+  --font-archivo: var(--font-dejavu-sans);
+  --font-jetbrains: var(--font-dejavu-sans);
+
   /* Opaque warm backdrop so the global teal body glow doesn't bleed through */
   background: var(--bg);
   min-height: 100vh;
@@ -2417,6 +2427,12 @@ h2.sec-h {
   letter-spacing: -0.03em;
   max-width: 15ch;
   text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
+}
+/* Gentle italic on the ad headings (client: "thora sa italic") — renders in
+   true DejaVu Serif Italic. Scoped to .ad so the teal homepage stays upright. */
+.ad .ad-h1,
+.ad .sec-h {
+  font-style: italic;
 }
 .ad-hero-sub {
   color: #d8cebb;

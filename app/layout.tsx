@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Exo_2, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import SiteChrome from "./components/SiteChrome";
 import RevealObserver from "./components/RevealObserver";
@@ -27,6 +28,27 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
 });
 
+/* DejaVu — the actual fonts embedded in the client's reference PDF. Self-hosted
+   (not on Google Fonts) and used ONLY on the /ecommerce-automation funnel (.ad
+   scope): DejaVu Serif for headings (incl. italic for the gold .g accents) and
+   DejaVu Sans for body + labels. See app/fonts/. */
+const dejavuSerif = localFont({
+  src: [
+    { path: "./fonts/DejaVuSerif.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/DejaVuSerif-Italic.ttf", weight: "400", style: "italic" },
+  ],
+  variable: "--font-dejavu-serif",
+});
+
+const dejavuSans = localFont({
+  src: [
+    { path: "./fonts/DejaVuSans.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/DejaVuSans-Oblique.ttf", weight: "400", style: "italic" },
+    { path: "./fonts/DejaVuSans-Bold.ttf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-dejavu-sans",
+});
+
 export const metadata: Metadata = {
   title: "WealthWithEcom — Systematic E-Commerce Wealth",
   description:
@@ -41,7 +63,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
+      className={`${archivo.variable} ${fraunces.variable} ${jetbrainsMono.variable} ${dejavuSerif.variable} ${dejavuSans.variable}`}
     >
       <body suppressHydrationWarning>
         <LoadingScreen />
